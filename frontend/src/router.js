@@ -3,6 +3,7 @@ import Router from "vue-router";
 //import Home from "./views/Home.vue";
 import Welcome from "./views/Welcome.vue";
 import Books from "./views/Books.vue";
+import Contact from "./views/Contact.vue";
 
 Vue.use(Router);
 
@@ -19,6 +20,11 @@ export default new Router({
       path: "/books",
       name: "books",
       component: Books
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: Contact
     },
     {
       path: "/about",

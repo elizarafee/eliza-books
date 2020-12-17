@@ -4,7 +4,7 @@
       <p class="mb-1">Eliza Books &copy; 2020</p>
       <p class="mb-0">
         In case of any issue, please
-        <router-link to="/contact">contact</router-link> me.
+        <router-link to="/contact">contact</router-link> me. &#10084;
       </p>
     </div>
   </footer>
