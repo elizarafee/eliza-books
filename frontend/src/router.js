@@ -4,6 +4,7 @@ import Router from "vue-router";
 import Welcome from "./views/Welcome.vue";
 import Books from "./views/Books.vue";
 import Contact from "./views/Contact.vue";
+import Dashboard from "./views/Dashboard.vue";
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: "/contact",
       name: "contact",
       component: Contact
+    },
+    {
+      path: "/dashboard",
+      name: "dashboard",
+      component: Dashboard
     },
     {
       path: "/about",
