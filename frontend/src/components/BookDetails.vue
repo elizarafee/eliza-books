@@ -23,11 +23,11 @@
         <div class="row">
           <div class="col-sm-12 col-md-4">
             <img
-             :src="
-        `http://localhost:8088/images/${
-          book.picture ? book.picture : 'book.png'
-        }`
-      "
+              :src="
+                `http://localhost:8088/images/${
+                  book.picture ? book.picture : 'book.jpg'
+                }`
+              "
               class="rounded float-start img-fluid mb-3"
               :alt="`${book.title}`"
             />

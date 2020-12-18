@@ -3,7 +3,7 @@
     <img
       :src="
         `http://localhost:8088/images/${
-          book.picture ? book.picture : 'book.png'
+          book.picture ? book.picture : 'book.jpg'
         }`
       "
       class="card-img-top fit-height"
