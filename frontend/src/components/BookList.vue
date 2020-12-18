@@ -2,16 +2,25 @@
   <div class="books">
     <div class="album py-5 bg-light">
         <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-           <book-list-item />
-           <book-list-item />
-           <book-list-item />
-           <book-list-item />
-           <book-list-item />
-           <book-list-item />
+ <div class="row justify-content-center">
+      <div class="col-md-9">
+
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+           <book-list-item id="6"/>
+           <book-list-item id="5"/>
+           <book-list-item id="8"/>
+           <book-list-item id="3"/>
+           <book-list-item id="9"/>
+           <book-list-item id="7"/>
 
           </div>
+
+      </div>
+ </div>
+
         </div>
       </div>
     

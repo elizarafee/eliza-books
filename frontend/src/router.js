@@ -6,6 +6,7 @@ import Books from "./views/Books.vue";
 import Contact from "./views/Contact.vue";
 import Dashboard from "./views/Dashboard.vue";
 import AddBook from "./views/AddBook.vue";
+import BookDetailsView from "./views/BookDetailsView.vue";
 
 Vue.use(Router);
 
@@ -19,15 +20,21 @@ export default new Router({
       component: Welcome
     },
     {
+      path: "/books/:book_id",
+      name: "BookDetailsView",
+      component: BookDetailsView
+    },
+    {
       path: "/books",
       name: "books",
       component: Books
     },
     {
-      path: "/books/create",
+      path: "/book/create",
       name: "add-book",
       component: AddBook
     },
+    
     {
       path: "/contact",
       name: "contact",
@@ -37,15 +44,6 @@ export default new Router({
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard
-    },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
     }
   ]
 });
