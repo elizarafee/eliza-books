@@ -41,7 +41,7 @@
           <tbody>
             <tr>
               <th scope="row">1</th>
-              <td class="text-start">Mark</td>
+              <td class="text-start">Mark <span class="badge bg-warning text-dark">Sold</span></td>
               <td class="d-none d-sm-table-cell">Otto</td>
               <td>
 

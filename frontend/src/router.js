@@ -20,6 +20,11 @@ export default new Router({
       component: Welcome
     },
     {
+      path: "/books/create",
+      name: "add-book",
+      component: AddBook
+    },
+    {
       path: "/books/:book_id",
       name: "BookDetailsView",
       component: BookDetailsView
@@ -29,11 +34,7 @@ export default new Router({
       name: "books",
       component: Books
     },
-    {
-      path: "/book/create",
-      name: "add-book",
-      component: AddBook
-    },
+    
     
     {
       path: "/contact",
