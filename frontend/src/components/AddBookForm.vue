@@ -344,7 +344,7 @@ export default {
       formData.append("title", this.title);
       formData.append("authors", this.authors);
       formData.append("format", this.format);
-      formData.append("purchasing_price", this.purchasingPrice);
+      formData.append("original_price", this.originalPrice);
       formData.append("selling_price", this.sellingPrice);
       formData.append("condition", this.condition);
       formData.append("picture", this.picture);

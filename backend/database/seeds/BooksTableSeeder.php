@@ -15,7 +15,7 @@ class BooksTableSeeder extends Seeder
     {
         $faker = Faker::create('App\Book');
 
-        $books[0] = ['title' => 'Code Complete', 'authors' => 'Steve McConnell'];
+        $books[0] = ['title' => 'Code Complete 2nd Edition', 'authors' => 'Steve McConnell'];
         $books[1] = ['title' => 'Clean Code', 'authors' => 'Robert C. Martin (Uncle Bob)'];
         $books[2] = ['title' => 'Refactoring', 'authors' => 'Martin Fowler'];
         $books[3] = ['title' => 'Head First Design Patterns', 'authors' => 'Eric Freeman, Bert Bates, Kathy Sierra, and Elisabeth Robson'];

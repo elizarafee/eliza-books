@@ -1,7 +1,7 @@
 <template>
     <div class="col">
         <div class="card shadow-sm h-100">
-            <img src="../assets/logo.png" class="card-img-top bg-light" alt="...">
+            <img src="http://localhost:8088/images/book-3.jpg" class="card-img-top bg-light" alt="...">
        <div class="card-body text-start">
             <p class="card-text ">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <div class="d-flex justify-content-between align-items-center">

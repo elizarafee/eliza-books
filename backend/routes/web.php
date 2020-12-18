@@ -21,3 +21,12 @@ $router->get('/api/start', function () {
         'message' => 'All requests with api prefix will go to backend'
     ];
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {   
+    $router->get('books', 'BookController@index');
+    $router->post('books', 'BookController@store');
+    $router->get('books/{id}', 'BookController@show');
+    $router->put('books/{id}', 'BookController@update');
+    $router->post('books/{id}/sold', 'BookController@sold');
+    $router->delete('books/{id}', 'BookController@destroy');
+});
