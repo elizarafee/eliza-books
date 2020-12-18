@@ -2,3 +2,4 @@
 /.idea
 /bootstrap/cache
 /storage/profiler
+.DS_Store
