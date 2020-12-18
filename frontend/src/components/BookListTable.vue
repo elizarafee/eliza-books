@@ -31,11 +31,10 @@
         <thead>
           <tr>
             <th scope="col" width="5%">#</th>
-            <th scope="col" width="40%" class="text-start">Title</th>
+            <th scope="col" width="75%" class="text-start">Title</th>
             <th scope="col" width="20%" class="d-none d-sm-table-cell">
               Selling Price
             </th>
-            <th scope="col" width="">Handle</th>
           </tr>
         </thead>
         <tbody>
@@ -51,13 +50,11 @@
                 "
                 >Sold</span
               >
+
+              <book-mark-as-sold :book="book" />
             </td>
             <td class="d-none d-sm-table-cell">
               &#163;{{ book.selling_price }}
-            </td>
-            <td>
-              <book-mark-as-sold :book="book" />
-              <remove-book :book="book" />
             </td>
           </tr>
         </tbody>
@@ -69,13 +66,12 @@
 <script>
 import axios from "axios";
 import BookMarkAsSold from "@/components/BookMarkAsSold";
-import RemoveBook from "@/components/RemoveBook";
+
 
 export default {
   name: "BookListTable",
   components: {
     BookMarkAsSold,
-    RemoveBook,
   },
 
   data() {

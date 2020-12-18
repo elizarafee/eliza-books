@@ -2,7 +2,12 @@
   <div class="container">
     <div class="row justify-content-center pt-5 pb-5">
       <div class="col-md-8">
-        <h3 class="text-start mb-3">
+       
+         
+
+<div class="row">
+  <div class="col-sm-6">
+     <h3 class="text-start">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -18,6 +23,10 @@
           </svg>
           Book Details
         </h3>
+  </div>
+  <div class="col-sm-6"> <remove-book class="float-end" :book="book" /></div>
+</div>
+
         <hr />
 
         <div class="row">
@@ -70,9 +79,13 @@
 
 <script>
 import axios from "axios";
+import RemoveBook from "@/components/RemoveBook";
 
 export default {
   name: "BookDetails",
+  components: {
+    RemoveBook,
+  },
   props: ["book_id"],
   data() {
     return {
@@ -81,8 +94,19 @@ export default {
   },
   async created() {
     const response = await axios.get("/api/books/" + this.book_id);
+
+console.log(response);
+
     if (response.data.status == "success") {
-      this.book = response.data.data;
+
+      if(response.data.data) {
+ this.book = response.data.data;
+      } else {
+        this.$router.push('/books');
+      }
+
+
+     
     } else if (response.data.status == "error") {
       this.$toast.error(response.data.message, {
         duration: 10000,

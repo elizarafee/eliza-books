@@ -45,7 +45,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            ...
+           {{ this.book.id }}
           </div>
           <div class="modal-footer">
             <button
@@ -92,7 +92,7 @@ this.$toast.success(response.data.message, {
             duration: 10000,
           });
 
-         this.book.removed = 1;
+         this.$router.push('/dashboard');
         }
 
         if(response.data.status === "error") {

@@ -360,7 +360,7 @@ export default {
             duration: 10000,
           });
 
-          this.$router.push("/books");
+          this.$router.push("/books/"+response.data.data.id);
         })
         .catch((error) => {
           if (error.response.status == 422) {
