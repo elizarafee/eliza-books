@@ -15,12 +15,12 @@ class BooksTableSeeder extends Seeder
     {
         $faker = Faker::create('App\Book');
 
-        $books[0] = ['title' => 'Code Complete 2nd Edition', 'authors' => 'Steve McConnell'];
-        $books[1] = ['title' => 'Clean Code', 'authors' => 'Robert C. Martin (Uncle Bob)'];
-        $books[2] = ['title' => 'Refactoring', 'authors' => 'Martin Fowler'];
-        $books[3] = ['title' => 'Head First Design Patterns', 'authors' => 'Eric Freeman, Bert Bates, Kathy Sierra, and Elisabeth Robson'];
-        $books[4] = ['title' => 'Patterns of Enterprise Application Architecture', 'authors' => 'Martin Fowler'];
-        $books[5] = ['title' => 'Working Effectively With Legacy Code', 'authors' => 'Michael Feathers'];
+        $books[0] = ['title' => 'Code Complete 2nd Edition', 'authors' => 'Steve McConnell', 'picture' => 'book-0.png'];
+        $books[1] = ['title' => 'Clean Code', 'authors' => 'Robert C. Martin', 'picture' => 'book-1.jpg'];
+        $books[2] = ['title' => 'Refactoring', 'authors' => 'Martin Fowler', 'picture' => 'book-2.jpg'];
+        $books[3] = ['title' => 'Head First Design Patterns', 'authors' => 'Eric Freeman, Bert Bates, Kathy Sierra, and Elisabeth Robson', 'picture' => 'book-3.jpg'];
+        $books[4] = ['title' => 'Patterns of Enterprise Application Architecture', 'authors' => 'Martin Fowler', 'picture' => 'book-4.jpg'];
+        $books[5] = ['title' => 'Working Effectively With Legacy Code', 'authors' => 'Michael Feathers', 'picture' => 'book-5.jpg'];
 
         $format = [
             'Paperback',
@@ -43,6 +43,7 @@ class BooksTableSeeder extends Seeder
             'selling_price' =>  $faker->numberBetween(50, 100),
             'condition' =>  $condition[rand(0,2)],
             'sold' =>  $faker->boolean(),
+            'picture' => $books[$i]['picture'],
             'created_at' =>  $faker->date(),
         ]);
         }

@@ -130,7 +130,7 @@
 
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label text-end"
-              >Original Price</label
+              >Original Price (&#163;)</label
             >
             <div class="col-sm-9 text-start">
               <input
@@ -150,17 +150,17 @@
               </div>
 
               <div
-                v-if="validationErrors && validationErrors.originalPrice"
+                v-if="validationErrors && validationErrors.original_price"
                 class="invalid-feedback"
               >
-                {{ validationErrors.originalPrice[0] }}
+                {{ validationErrors.original_price[0] }}
               </div>
             </div>
           </div>
 
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label text-end"
-              >Selling Price</label
+              >Selling Price (&#163;)</label
             >
             <div class="col-sm-9 text-start">
               <input
@@ -180,10 +180,10 @@
               </div>
 
               <div
-                v-if="validationErrors && validationErrors.sellingPrice"
+                v-if="validationErrors && validationErrors.selling_price"
                 class="invalid-feedback"
               >
-                {{ validationErrors.sellingPrice[0] }}
+                {{ validationErrors.selling_price[0] }}
               </div>
             </div>
           </div>
@@ -327,17 +327,19 @@ export default {
       this.picture = e.target.files[0];
     },
 
+    resetForm: function() {
+      this.title = "";
+      this.authors = "";
+      this.format = "";
+      this.condition = "";
+      this.originalPrice = "";
+      this.sellingPrice = "";
+      this.picture = "";
+    },
+
     submit: function() {
       this.$v.$touch(); // this $touch method will set true for the related models and it's childrens
       if (this.$v.$pendding || this.$v.$error) return;
-
-      this.$toast.open({
-    message: 'Success',
-    type: 'success',
-    duration: 5000
-});
-
-      //alert("Data Submit");
 
       const formData = new FormData();
 
@@ -353,7 +355,12 @@ export default {
         .post("/api/books", formData)
         .then((response) => {
           console.warn(response);
-          // router.push({ name: 'user', params: { userId: '123' } });
+
+          this.$toast.success(response.data.message, {
+            duration: 10000,
+          });
+
+          this.$router.push("/books");
         })
         .catch((error) => {
           if (error.response.status == 422) {

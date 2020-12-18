@@ -16,7 +16,7 @@ class BookController extends Controller
     public function index()
     {
         try {
-            $books = Book::get(['id', 'title', 'format', 'selling_price', 'condition', 'sold', 'picture']);
+            $books = Book::get(['id', 'title', 'authors', 'format', 'original_price', 'selling_price', 'condition', 'sold', 'picture']);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }

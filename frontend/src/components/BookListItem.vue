@@ -1,23 +1,53 @@
 <template>
-    <div class="col">
-        <div class="card shadow-sm h-100">
-            <img src="http://localhost:8088/images/book-3.jpg" class="card-img-top bg-light" alt="...">
-       <div class="card-body text-start">
-            <p class="card-text ">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <router-link :to="`/books/${ id }`" class="btn btn-sm btn-outline-secondary">Book Details</router-link>
-            </div>
-            <small class="text-muted">9 mins</small>
-            </div>
-        </div>
-        </div>
+  <div class="card shadow-sm h-100">
+    <img
+      :src="
+        `http://localhost:8088/images/${
+          book.picture ? book.picture : 'book.png'
+        }`
+      "
+      class="card-img-top fit-height"
+      :alt="`${book.title}`"
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ book.title }}
+      </h5>
+      <p class="card-text text-muted">{{ book.authors }} <br/>
+        <span :class="`${book.sold ? 'badge bg-warning text-dark' : 'd-none'}`"
+          >Sold</span
+        >
+      </p>
+      <div class="d-flex justify-content-between align-items-center"></div>
     </div>
+
+    <div class="card-footer">
+      <div class="btn-group float-start">
+        <router-link
+          :to="`/books/${book.id}`"
+          class="btn btn-sm btn-outline-success"
+          >Book Details</router-link
+        >
+      </div>
+      <span class="float-end"
+        ><small class="text-muted mr-1"
+          ><del>&#163;{{ book.original_price }}</del></small
+        >
+        <strong>&#163;{{ book.selling_price }}</strong>
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
- props: ['id']
-}
+  props: ["book"],
+};
 </script>
 
+<style scoped lang="scss">
+.fit-height {
+  height: 260px;
+  object-fit: cover;
+}
+</style>

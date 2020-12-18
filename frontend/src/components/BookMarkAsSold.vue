@@ -84,10 +84,7 @@ export default {
       
 
       this.$toast.success("Book marked as sold successfully.", {
-	showProgress: false,
-	rtl: true,
-	timeOut: 5000, // infinity
-	closeable: false
+	duration: 10000
 });
 
 
