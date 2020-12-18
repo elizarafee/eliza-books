@@ -331,6 +331,12 @@ export default {
       this.$v.$touch(); // this $touch method will set true for the related models and it's childrens
       if (this.$v.$pendding || this.$v.$error) return;
 
+      this.$toast.open({
+    message: 'Success',
+    type: 'success',
+    duration: 5000
+});
+
       //alert("Data Submit");
 
       const formData = new FormData();
