@@ -19,7 +19,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 import BookListItem from "@/components/BookListItem.vue";
 
 export default {
@@ -34,7 +34,10 @@ export default {
   },
   async created() {
     console.log("created");
-   // const response = await axios.get("/api/start");
+    const response = await axios.get("/api/start");
+
+console.log(response);
+
   //  this.serverMessage = "All Books";
   }
 };

@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <Header />
-    <main>
+    <PageHeader />
+    <main class="bg-light">
       <router-view />
     </main>
-    <Footer />
+    <PageFooter />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from "@/views/Header.vue";
-import Footer from "@/views/Footer.vue";
+import PageHeader from "@/views/PageHeader.vue";
+import PageFooter from "@/views/PageFooter.vue";
 
 export default {
   name: "app",
   components: {
-    Header,
-    Footer,
+    PageHeader,
+    PageFooter,
   },
 };
 </script>

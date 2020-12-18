@@ -1,6 +1,5 @@
 <template>
-  <div class="books">
-    <div class="py-5 bg-light">
+    <div class="py-5">
       <div class="container">
         <div class="pb-5">
           <h3 class="float-start text-left">List of Books</h3>
@@ -96,7 +95,6 @@
         </table>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -119,6 +117,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
 .margin-right-5 {
   margin-right: 5px;
 }

@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Eliza Books</a>
+         <router-link to="/" class="navbar-brand">Eliza Books</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -40,6 +40,6 @@
 
 <script>
 export default {
-  name: "header",
+  name: "page-header",
 };
 </script>

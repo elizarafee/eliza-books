@@ -5,6 +5,7 @@ import Welcome from "./views/Welcome.vue";
 import Books from "./views/Books.vue";
 import Contact from "./views/Contact.vue";
 import Dashboard from "./views/Dashboard.vue";
+import AddBook from "./views/AddBook.vue";
 
 Vue.use(Router);
 
@@ -21,6 +22,11 @@ export default new Router({
       path: "/books",
       name: "books",
       component: Books
+    },
+    {
+      path: "/books/create",
+      name: "add-book",
+      component: AddBook
     },
     {
       path: "/contact",

@@ -11,7 +11,7 @@ import BookListTable from "@/components/BookListTable.vue";
 export default {
   name: "books",
   components: {
-    BookListTable
-  }
+    BookListTable,
+  },
 };
 </script>
