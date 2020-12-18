@@ -39,15 +39,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="book in books" :key="book.id">
-            <th scope="row">{{ book.id }}</th>
+          <tr v-for="book in books" :key="book.id" v-show="`${ book.removed === 1 ? 0 : 1}`">
+            <th scope="row">{{ book.id }} - {{ book.removed }}</th>
             <td class="text-start">
               <router-link class="px-1" :to="`/books/${book.id}`">
                 {{ book.title }}
               </router-link>
-              <span class="badge bg-warning text-dark">Sold</span>
+              <span
+                :class="
+                  `${book.sold ? 'badge bg-warning text-dark' : 'd-none'}`
+                "
+                >Sold</span
+              >
             </td>
-            <td class="d-none d-sm-table-cell">&#163;{{ book.selling_price }}</td>
+            <td class="d-none d-sm-table-cell">
+              &#163;{{ book.selling_price }}
+            </td>
             <td>
               <book-mark-as-sold :book="book" />
               <remove-book :book="book" />
