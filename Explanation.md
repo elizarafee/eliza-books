@@ -4,7 +4,7 @@ I have enjoyed building the site. I did not work with Vue.js before, had to lear
  
 ### Backend 
 
-- Implemented the BookController which manages the API requests related to book 
+- Implemented the `BookController` which manages the API requests related to book 
 - It can manage the following requests such as: 
     - Providing the list of books 
     - Provide the details of any specified book
@@ -19,16 +19,16 @@ I have enjoyed building the site. I did not work with Vue.js before, had to lear
 ### Frontend
 
 - All API calls have `/api` prefix
-- I have used Vue Router to for all rontend routes
+- I have used Vue Router for all frontend routes
 - I have broken down Vue components logically with my understanding 
-- I have use [vuelidate.js] for form validation 
+- I have used [vuelidate.js](https://vuelidate.js.org/) for form validation 
 - I have used SCSS for styling
 - I have used Bootstrap as UI library
-- I have used vue toast [https://github.com/ankurk91/vue-toast-notification] for better user experience
-- You can see the list of books by visiting the 'Books' page (available on the navbar)
-- You can see the details of any book by clicking the 'Book Details' button from the 'Books' page and also by clicking on any particular book link available on 'Dashboard' page (available on the navbar) then there will be a button 'Remove' by which you can remove the book
+- I have used [vue toast notification](https://github.com/ankurk91/vue-toast-notification) for better user experience
+- You can see the list of books by visiting the `Books` page (available on the navbar)
+- You can see the details of any book by clicking the 'Book Details' button from the `Books` page and also by clicking on any particular book link available on `Dashboard` page (available on the navbar)
 - You can remove any spacified book from book details page 
-- You can mark any book as sold on 'Dashboard' page (available on the navbar)
+- You can mark any book as sold on `Dashboard` page
 
 
 ### Database
