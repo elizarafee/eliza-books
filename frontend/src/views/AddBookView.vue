@@ -1,15 +1,15 @@
 <template>
-  <div class="books">
+  <div>
     <add-book-form />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
 import AddBookForm from "@/components/AddBookForm.vue";
 
 export default {
-  name: "add-book",
+  name: "AddBookView",
   components: {
     AddBookForm
   }

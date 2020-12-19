@@ -1,11 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-//import Home from "./views/Home.vue";
-import Welcome from "./views/Welcome.vue";
-import Books from "./views/Books.vue";
-import Contact from "./views/Contact.vue";
-import Dashboard from "./views/Dashboard.vue";
-import AddBook from "./views/AddBook.vue";
+import WelcomeView from "./views/WelcomeView.vue";
+import BooksView from "./views/BooksView.vue";
+import ContactView from "./views/ContactView.vue";
+import DashboardView from "./views/DashboardView.vue";
+import AddBookView from "./views/AddBookView.vue";
 import BookDetailsView from "./views/BookDetailsView.vue";
 
 Vue.use(Router);
@@ -16,35 +15,27 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "welcome",
-      component: Welcome
+      component: WelcomeView,
     },
     {
       path: "/books/create",
-      name: "add-book",
-      component: AddBook
+      component: AddBookView,
     },
     {
       path: "/books/:book_id",
-      name: "BookDetailsView",
-      component: BookDetailsView
+      component: BookDetailsView,
     },
     {
       path: "/books",
-      name: "books",
-      component: Books
+      component: BooksView,
     },
-    
-    
     {
       path: "/contact",
-      name: "contact",
-      component: Contact
+      component: ContactView,
     },
     {
       path: "/dashboard",
-      name: "dashboard",
-      component: Dashboard
-    }
-  ]
+      component: DashboardView,
+    },
+  ],
 });

@@ -4,28 +4,8 @@
       <p class="mb-1">Eliza Books &copy; 2020</p>
       <p class="mb-0">
         In case of any issue, please
-        <router-link to="/contact">contact</router-link> me. &#10084;
+        <router-link to="/contact" class="link link-primary">contact</router-link> me. &#10084;
       </p>
     </div>
   </footer>
 </template>
-
-<script>
-export default {
-  name: "page-footer",
-};
-</script>
-
-<style scoped lang="scss">
-footer {
-  a {
-    text-decoration: underline;
-    color: #2c3e50;
-
-    &:hover {
-      text-decoration: none;
-      color: #42b983;
-    }
-  }
-}
-</style>
