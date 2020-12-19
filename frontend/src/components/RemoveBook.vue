@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="float-start">
     <button
       type="button"
-      class="ml-3 btn btn-outline-danger btn-sm btn-space float-start"
+      class="ml-3 btn btn-outline-danger btn-sm"
       data-bs-toggle="modal"
-      :data-bs-target="`#removeBookModal-${'' + this.book.id}`"
+      :data-bs-target="`#removeBookModal-${'' + book.id}`"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      :id="`removeBookModal-${'' + this.book.id}`"
+      :id="`removeBookModal-${'' + book.id}`"
       tabindex="-1"
       aria-labelledby="removeBookModalLabel"
       aria-hidden="true"
@@ -36,7 +36,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="removeBookModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="removeBookModalLabel">Removing book</h5>
             <button
               type="button"
               class="btn-close"
@@ -44,24 +44,26 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">
-           {{ this.book.id }}
+          <div class="modal-body text-start">
+            Are you sure to remove the book
+            <strong class="text-success">{{ book.title }}</strong
+            >?
           </div>
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-outline-secondary px-5"
               data-bs-dismiss="modal"
             >
-              Close
+              No
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-danger px-5"
               data-bs-dismiss="modal"
               @click="submit"
             >
-              Save changes
+              Yes
             </button>
           </div>
         </div>
@@ -85,42 +87,25 @@ export default {
       axios
         .delete("/api/books/" + this.book.id)
         .then((response) => {
-       // console.warn(response);
+          if (response.data.status === "success") {
+            this.$toast.success(response.data.message, {
+              duration: 10000,
+            });
 
-        if(response.data.status === "success") {
-this.$toast.success(response.data.message, {
-            duration: 10000,
-          });
+            // redirecting to dashboard page
+            this.$router.push("/dashboard");
+          }
 
-         this.$router.push('/dashboard');
-        }
-
-        if(response.data.status === "error") {
-this.$toast.error(response.data.message, {
-            duration: 10000,
-          });
-
-          this.book.sold = 1;
-        }
-
-          
+          if (response.data.status === "error") {
+            this.$toast.error(response.data.message, {
+              duration: 10000,
+            });
+          }
         })
         .catch((error) => {
-
-console.log(error);
-
-          // this.$toast.error(error.data.message, {
-          //   duration: 10000,
-          // });
+          console.log(error);
         });
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-.btn-space {
-  margin-right: 5px;
-  margin-bottom: 3px;
-}
-</style>
