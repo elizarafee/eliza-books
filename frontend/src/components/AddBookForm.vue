@@ -26,7 +26,9 @@
           enctype="multipart/form-data"
         >
           <div class="row mb-3">
-            <label class="col-sm-3 col-form-label text-end">Title</label>
+            <label class="col-sm-3 col-form-label text-end"
+              >Title <small class="text-danger">*</small></label
+            >
             <div class="col-sm-9 text-start">
               <input
                 type="text"
@@ -40,7 +42,11 @@
                 }"
               />
               <div v-if="!$v.title.required" class="invalid-feedback">
-                Title field is required
+                Title field is required.
+              </div>
+
+              <div v-if="!$v.title.maxLength" class="invalid-feedback">
+                Title field should not more than 150 characters.
               </div>
 
               <div
@@ -53,7 +59,9 @@
           </div>
 
           <div class="row mb-3">
-            <label class="col-sm-3 col-form-label text-end">Author(s)</label>
+            <label class="col-sm-3 col-form-label text-end"
+              >Author(s) <small class="text-danger">*</small></label
+            >
             <div class="col-sm-9 text-start">
               <input
                 type="text"
@@ -61,17 +69,28 @@
                 placeholder="Author(s) of the book"
                 aria-label="authors"
                 v-model.trim="$v.authors.$model"
-                :class="{ 'is-invalid': validationStatus($v.authors) }"
+                :class="{ 'is-invalid': validationStatus($v.authors) || validationErrors.authors }"
               />
               <div v-if="!$v.authors.required" class="invalid-feedback">
-                Author(s) field is required
+                Author(s) field is required.
+              </div>
+
+              <div v-if="!$v.authors.maxLength" class="invalid-feedback">
+                Author(s) field should not more than 250 characters.
+              </div>
+
+              <div
+                v-if="validationErrors && validationErrors.authors"
+                class="invalid-feedback"
+              >
+                {{ validationErrors.authors[0] }}
               </div>
             </div>
           </div>
 
           <fieldset class="row mb-3">
             <legend class="col-form-label col-sm-3 pt-0 text-end">
-              Format
+              Format <small class="text-danger">*</small>
             </legend>
             <div class="col-sm-9">
               <div class="form-check text-start">
@@ -83,7 +102,7 @@
                   value="Paperback"
                   checked
                   v-model.trim="$v.format.$model"
-                  :class="{ 'is-invalid': validationStatus($v.format) }"
+                  :class="{ 'is-invalid': validationStatus($v.format) || validationErrors.format }"
                 />
                 <label class="form-check-label" for="format1">
                   Paperback
@@ -99,7 +118,7 @@
                   value="Hardcover"
                   checked
                   v-model.trim="$v.format.$model"
-                  :class="{ 'is-invalid': validationStatus($v.format) }"
+                  :class="{ 'is-invalid': validationStatus($v.format) || validationErrors.format }"
                 />
                 <label class="form-check-label" for="format2">
                   Hardcover
@@ -115,15 +134,22 @@
                   value="Soft Copy"
                   checked
                   v-model.trim="$v.format.$model"
-                  :class="{ 'is-invalid': validationStatus($v.format) }"
+                  :class="{ 'is-invalid': validationStatus($v.format) || validationErrors.format }"
                 />
                 <label class="form-check-label" for="format3">
                   Soft Copy
                 </label>
 
                 <div v-if="!$v.format.required" class="invalid-feedback">
-                  Please select the book format
+                  Please select the book format.
                 </div>
+
+                <div
+                v-if="validationErrors && validationErrors.format"
+                class="invalid-feedback"
+              >
+                {{ validationErrors.format[0] }}
+              </div>
               </div>
             </div>
           </fieldset>
@@ -142,11 +168,11 @@
                 :class="{
                   'is-invalid':
                     validationStatus($v.originalPrice) ||
-                    validationErrors.originalPrice,
+                    validationErrors.original_price,
                 }"
               />
-              <div v-if="!$v.originalPrice.required" class="invalid-feedback">
-                Original price is required
+              <div v-if="!$v.originalPrice.numeric" class="invalid-feedback">
+                Original price should be a number.
               </div>
 
               <div
@@ -160,7 +186,8 @@
 
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label text-end"
-              >Selling Price (&#163;)</label
+              >Selling Price (&#163;)
+              <small class="text-danger">*</small></label
             >
             <div class="col-sm-9 text-start">
               <input
@@ -172,11 +199,14 @@
                 :class="{
                   'is-invalid':
                     validationStatus($v.sellingPrice) ||
-                    validationErrors.sellingPrice,
+                    validationErrors.selling_price,
                 }"
               />
               <div v-if="!$v.sellingPrice.required" class="invalid-feedback">
-                Title field is required
+                Selling price is required.
+              </div>
+              <div v-if="!$v.sellingPrice.numeric" class="invalid-feedback">
+                Selling price should be a number.
               </div>
 
               <div
@@ -190,7 +220,7 @@
 
           <fieldset class="row mb-3">
             <legend class="col-form-label col-sm-3 pt-0 text-end">
-              Condition
+              Condition <small class="text-danger">*</small>
             </legend>
             <div class="col-sm-9">
               <div class="form-check text-start">
@@ -202,7 +232,7 @@
                   value="Almost New"
                   checked
                   v-model.trim="$v.condition.$model"
-                  :class="{ 'is-invalid': validationStatus($v.condition) }"
+                  :class="{ 'is-invalid': validationStatus($v.condition) || validationErrors.condition }"
                 />
                 <label class="form-check-label" for="condition1">
                   Almost New
@@ -218,7 +248,7 @@
                   value="Good"
                   checked
                   v-model.trim="$v.condition.$model"
-                  :class="{ 'is-invalid': validationStatus($v.condition) }"
+                  :class="{ 'is-invalid': validationStatus($v.condition) || validationErrors.condition }"
                 />
                 <label class="form-check-label" for="condition2">
                   Good
@@ -234,15 +264,22 @@
                   value="Usable"
                   checked
                   v-model.trim="$v.condition.$model"
-                  :class="{ 'is-invalid': validationStatus($v.condition) }"
+                  :class="{ 'is-invalid': validationStatus($v.condition) || validationErrors.condition }"
                 />
                 <label class="form-check-label" for="condition3">
                   Usable
                 </label>
 
                 <div v-if="!$v.format.required" class="invalid-feedback">
-                  Please provide the book condition
+                  Please provide the book condition.
                 </div>
+
+                <div
+                v-if="validationErrors && validationErrors.condition"
+                class="invalid-feedback"
+              >
+                {{ validationErrors.condition[0] }}
+              </div>
               </div>
             </div>
           </fieldset>
@@ -250,39 +287,30 @@
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label text-end">Picture</label>
             <div class="col-sm-9 text-start">
-              <input
-                class="form-control"
-                type="file"
-                id="file"
-                ref="file"
-                accept="image/*"
-                @change="handlePictureUpload"
-              />
+                <input
+                  class="form-control"
+                  type="file"
+                  id="file"
+                  ref="file"
+                  accept="image/*"
+                  @change="handlePictureUpload"
+                  :class="{'is-invalid': validationErrors.picture}"
+                />
+              <small class="text-muted">Maximum file size can be 2MB</small>
+              <small id="file-input-feedback" class="text-danger"></small>
+
+              <div
+                v-if="validationErrors && validationErrors.picture"
+                class="invalid-feedback"
+              >
+                {{ validationErrors.picture[0] }}
+              </div>
             </div>
           </div>
 
           <div class="row mb-3">
             <div class="col-sm-9 offset-sm-3 text-start">
-              <button type="submit" class="btn btn-outline-secondary px-5">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-clipboard-plus"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zM8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"
-                  />
-                </svg>
-                Save
-              </button>
+              <button type="submit" class="btn btn-outline-success px-5" id="submit-button">Save</button>
             </div>
           </div>
         </form>
@@ -292,7 +320,7 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required, maxLength, numeric } from "vuelidate/lib/validators";
 import axios from "axios";
 
 export default {
@@ -310,11 +338,11 @@ export default {
     };
   },
   validations: {
-    title: { required },
-    authors: { required },
+    title: { required, maxLength: maxLength(150) },
+    authors: { required, maxLength: maxLength(250) },
     format: { required },
-    originalPrice: { required },
-    sellingPrice: { required },
+    originalPrice: { numeric },
+    sellingPrice: { required, numeric },
     condition: { required },
   },
 
@@ -323,23 +351,24 @@ export default {
       return typeof validation != "undefined" ? validation.$error : false;
     },
 
+    /* this function handles adding the file in the form */
     handlePictureUpload(e) {
-      this.picture = e.target.files[0];
-    },
-
-    resetForm: function() {
-      this.title = "";
-      this.authors = "";
-      this.format = "";
-      this.condition = "";
-      this.originalPrice = "";
-      this.sellingPrice = "";
-      this.picture = "";
+      if (e.target.files[0].size > 2100000) {
+        document.getElementById("file-input-feedback").textContent =
+          " File size exceeded.";
+        e.target.value = null;
+      } else {
+        this.picture = e.target.files[0];
+        document.getElementById("file-input-feedback").textContent = "";
+      }
     },
 
     submit: function() {
-      this.$v.$touch(); // this $touch method will set true for the related models and it's childrens
+      this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
+
+document.getElementById("submit-button").classList.add('disabled');
+      document.getElementById("submit-button").textContent = 'Saving ...';
 
       const formData = new FormData();
 
@@ -354,18 +383,32 @@ export default {
       axios
         .post("/api/books", formData)
         .then((response) => {
-          console.warn(response);
 
-          this.$toast.success(response.data.message, {
-            duration: 10000,
-          });
+          if (response.data.status == "success") {
+            this.$toast.success(response.data.message, {
+              duration: 10000,
+            });
 
-          this.$router.push("/books/"+response.data.data.id);
+            // redirecting to the book details page
+          this.$router.push("/books/" + response.data.data.id);
+          }
+
+          if (response.data.status == "error") {
+            this.$toast.error(response.data.message, {
+              duration: 10000,
+            });
+
+            document.getElementById("submit-button").classList.remove('disabled');
+      document.getElementById("submit-button").textContent = 'Save';
+          }
         })
         .catch((error) => {
           if (error.response.status == 422) {
+            // catching validation errors from server side
             this.validationErrors = error.response.data;
-            console.log(this.validationErrors);
+
+            document.getElementById("submit-button").classList.remove('disabled');
+      document.getElementById("submit-button").textContent = 'Save';
           }
         });
     },

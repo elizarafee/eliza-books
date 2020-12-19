@@ -1,8 +1,8 @@
 <template>
-  <div :class="`${this.book.sold ? 'd-none' : ''}`">
+  <div :class="`${this.book.sold ? 'd-none' : 'float-end'}`">
     <button
       type="button"
-      class="btn btn-outline-warning btn-sm btn-space float-start"
+      class="btn btn-outline-success btn-sm"
       data-bs-toggle="modal"
       :data-bs-target="`#bookMarkAsSoldModal-${'' + this.book.id}`"
     >
@@ -23,7 +23,7 @@
           d="M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z"
         />
       </svg>
-      Mark as sold {{ this.book.sold }}
+      Mark as sold
     </button>
 
     <!-- Modal -->

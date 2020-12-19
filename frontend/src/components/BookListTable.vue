@@ -5,7 +5,7 @@
         <h3 class="float-start text-left">List of Books</h3>
         <router-link
           to="/books/create"
-          class="btn btn-outline-secondary btn-sm float-end"
+          class="float-end btn btn-outline-success btn-sm"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -32,16 +32,16 @@
           <tr>
             <th scope="col" width="5%">#</th>
             <th scope="col" width="75%" class="text-start">Title</th>
-            <th scope="col" width="20%" class="d-none d-sm-table-cell">
+            <th scope="col" width="20%" class="d-none d-sm-table-cell text-end">
               Selling Price
             </th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="book in books" :key="book.id" v-show="`${ book.removed === 1 ? 0 : 1}`">
-            <th scope="row">{{ book.id }} - {{ book.removed }}</th>
+            <th scope="row">{{ book.id }}</th>
             <td class="text-start">
-              <router-link class="px-1" :to="`/books/${book.id}`">
+              <router-link class="float-start info-link book-link px-1" :to="`/books/${book.id}`">
                 {{ book.title }}
               </router-link>
               <span
@@ -53,7 +53,7 @@
 
               <book-mark-as-sold :book="book" />
             </td>
-            <td class="d-none d-sm-table-cell">
+            <td class="d-none d-sm-table-cell text-end">
               &#163;{{ book.selling_price }}
             </td>
           </tr>
@@ -91,3 +91,13 @@ export default {
   },
 };
 </script>
+
+
+<style scoped lang="scss">
+.book-link {
+  &:hover {
+    color: #198754;
+    text-decoration: none;
+  }
+}
+</style>

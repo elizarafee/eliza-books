@@ -17,10 +17,10 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 150);
             $table->string('authors');
-            $table->string('format');
-            $table->decimal('original_price', 8, 2);
+            $table->string('format', 30);
+            $table->decimal('original_price', 8, 2)->nullable();
             $table->decimal('selling_price', 8, 2);
-            $table->string('condition');
+            $table->string('condition', 30);
             $table->boolean('sold')->default(0);
             $table->string('picture')->nullable();
             $table->timestamps();

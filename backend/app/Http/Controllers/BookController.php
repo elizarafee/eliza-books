@@ -34,13 +34,13 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|max:150|min:10',
-            'authors' => 'required',
-            'format' => 'required',
+            'title' => 'required|max:150',
+            'authors' => 'required|max:250',
+            'format' => 'required|max:30',
             'original_price' => 'required|numeric',
             'selling_price' => 'required|numeric',
-            'condition' => 'required',
-            'picture' => 'nullable|image',
+            'condition' => 'required|max:30',
+            'picture' => 'nullable|image|max:2048',
         ]);
 
         try {
@@ -95,14 +95,16 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // this method's operation not thoroughly tested 
+
         $this->validate($request, [
-            'title' => 'required|max:150|min:10',
-            'authors' => 'required',
-            'format' => 'required',
+            'title' => 'required|max:150',
+            'authors' => 'required|max:250',
+            'format' => 'required|max:30',
             'original_price' => 'required|numeric',
             'selling_price' => 'required|numeric',
-            'condition' => 'required',
-            'picture' => 'nullable|image',
+            'condition' => 'required|max:30',
+            'picture' => 'nullable|image|max:2048',
         ]);
 
         try {
@@ -139,7 +141,7 @@ class BookController extends Controller
 
 
     /**
-     * Mark the specified book as sold.
+     * Mark the specified book as sold
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -168,13 +170,12 @@ class BookController extends Controller
         try {
 
             $book = Book::find($id);
-                $picture = $book->picture;
-                if ($picture) {
-                    File::delete('images/' . $picture);
-                }
+            $picture = $book->picture;
+            if ($picture) {
+                File::delete('images/' . $picture);
+            }
 
-                $book->delete();
-
+            $book->delete();
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }

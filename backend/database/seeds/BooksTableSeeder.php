@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -33,19 +34,20 @@ class BooksTableSeeder extends Seeder
             'Good',
             'Usable'
         ];
-        
-        for ($i=0; $i<6; $i++) {
-            DB::table('books')-> insert([
-            'title' =>  $books[$i]['title'],
-            'authors' =>  $books[$i]['authors'],
-            'format' =>  $format[rand(0,2)],
-            'original_price' =>  $faker->numberBetween(200, 300),
-            'selling_price' =>  $faker->numberBetween(50, 100),
-            'condition' =>  $condition[rand(0,2)],
-            'sold' =>  $faker->boolean(),
-            'picture' => $books[$i]['picture'],
-            'created_at' =>  $faker->date(),
-        ]);
+
+        for ($i = 0; $i < 6; $i++) {
+            DB::table('books')->insert([
+                'title' =>  $books[$i]['title'],
+                'authors' =>  $books[$i]['authors'],
+                'format' =>  $format[rand(0, 2)],
+                'original_price' =>  $faker->numberBetween(200, 300),
+                'selling_price' =>  $faker->numberBetween(50, 100),
+                'condition' =>  $condition[rand(0, 2)],
+                'sold' =>  $faker->boolean(),
+                'picture' => $books[$i]['picture'],
+                'created_at' =>  $faker->date(),
+            ]);
+            File::copy(base_path().'/public/seed-images/' . $books[$i]['picture'], base_path().'/public/images/' . $books[$i]['picture']);
         }
     }
 }
