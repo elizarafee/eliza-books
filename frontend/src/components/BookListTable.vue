@@ -46,7 +46,7 @@
               </router-link>
               <span
                 :class="
-                  `${book.sold ? 'badge bg-warning text-dark' : 'd-none'}`
+                  `${book.sold ? 'badge bg-success' : 'd-none'}`
                 "
                 >Sold</span
               >

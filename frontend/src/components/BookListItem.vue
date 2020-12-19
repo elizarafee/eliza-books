@@ -15,7 +15,7 @@
       </h5>
       <p class="card-text text-muted">
         {{ book.authors }} <br />
-        <span :class="`${book.sold ? 'badge bg-warning text-dark' : 'd-none'}`"
+        <span :class="`${book.sold ? 'badge bg-success' : 'd-none'}`"
           >Sold</span
         >
       </p>
