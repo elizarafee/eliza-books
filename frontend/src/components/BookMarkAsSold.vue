@@ -38,7 +38,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="bookMarkAsSoldModalLabel">
-              Modal title
+              Marking as sold
             </h5>
             <button
               type="button"
@@ -48,23 +48,24 @@
             ></button>
           </div>
           <div class="modal-body">
-            ...
+            Are you sure to mark the book
+            <strong class="text-success">{{ book.title }}</strong> as sold?
           </div>
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-outline-secondary px-5"
               data-bs-dismiss="modal"
             >
-              Close
+              No
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary px-5"
               data-bs-dismiss="modal"
               @click="submit"
             >
-              Save changes
+              Yes
             </button>
           </div>
         </div>

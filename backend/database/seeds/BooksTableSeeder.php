@@ -43,11 +43,14 @@ class BooksTableSeeder extends Seeder
                 'original_price' =>  $faker->numberBetween(200, 300),
                 'selling_price' =>  $faker->numberBetween(50, 100),
                 'condition' =>  $condition[rand(0, 2)],
-                'sold' =>  $faker->boolean(),
+                'sold' =>  0,
                 'picture' => $books[$i]['picture'],
                 'created_at' =>  $faker->date(),
             ]);
-            File::copy(base_path().'/public/seed-images/' . $books[$i]['picture'], base_path().'/public/images/' . $books[$i]['picture']);
+
+            if (!File::exists(base_path() . '/public/images/' . $books[$i]['picture'])) {
+                File::copy(base_path() . '/public/seed-images/' . $books[$i]['picture'], base_path() . '/public/images/' . $books[$i]['picture']);
+            }
         }
     }
 }
