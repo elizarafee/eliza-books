@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('title', 150);
             $table->string('authors');
             $table->string('format', 30);
-            $table->decimal('original_price', 8, 2)->nullable();
+            $table->decimal('original_price', 8, 2)->default(0.00);
             $table->decimal('selling_price', 8, 2);
             $table->string('condition', 30);
             $table->boolean('sold')->default(0);

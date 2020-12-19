@@ -37,30 +37,33 @@ class BookController extends Controller
             'title' => 'required|max:150',
             'authors' => 'required|max:250',
             'format' => 'required|max:30',
-            'original_price' => 'required|numeric',
+            'original_price' => 'nullable|numeric',
             'selling_price' => 'required|numeric',
             'condition' => 'required|max:30',
             'picture' => 'nullable|image|max:2048',
         ]);
 
         try {
+            
+            $book_data = [
+                'title' => $request->get('title'),
+                'authors' => $request->get('authors'),
+                'format' => $request->get('format'),
+                'original_price' => $request->get('original_price') ? $request->get('original_price') : 0,
+                'selling_price' => $request->get('selling_price'),
+                'condition' => $request->get('condition'),
+               
+                'created_at' => date('Y-m-d H:i:s')
+            ];
 
             $picture_title = null;
             if ($request->hasFile('picture')) {
                 $picture_title = 'book-' . time() . '.' . $request->file('picture')->getClientOriginalExtension();
                 $request->file('picture')->move('images/', $picture_title);
+                $book_data['picture'] = $picture_title;
             }
 
-            $book_data = [
-                'title' => $request->get('title'),
-                'authors' => $request->get('authors'),
-                'format' => $request->get('format'),
-                'original_price' => $request->get('original_price'),
-                'selling_price' => $request->get('selling_price'),
-                'condition' => $request->get('condition'),
-                'picture' => $picture_title,
-                'created_at' => date('Y-m-d H:i:s')
-            ];
+
             $book = Book::create($book_data);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
@@ -101,7 +104,7 @@ class BookController extends Controller
             'title' => 'required|max:150',
             'authors' => 'required|max:250',
             'format' => 'required|max:30',
-            'original_price' => 'required|numeric',
+            'original_price' => 'nullable|numeric',
             'selling_price' => 'required|numeric',
             'condition' => 'required|max:30',
             'picture' => 'nullable|image|max:2048',
@@ -112,7 +115,7 @@ class BookController extends Controller
                 'title' => $request->get('title'),
                 'authors' => $request->get('authors'),
                 'format' => $request->get('format'),
-                'original_price' => $request->get('original_price'),
+                'original_price' => $request->get('original_price') ? $request->get('original_price') : 0,
                 'selling_price' => $request->get('selling_price'),
                 'condition' => $request->get('condition'),
                 'updated_at' => date('Y-m-d H:i:s')

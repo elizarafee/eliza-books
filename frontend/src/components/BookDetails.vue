@@ -59,8 +59,8 @@
                 <strong>Format: </strong> {{ book.format }}
               </div>
               <div class="list-group-item">
-                <strong>Original Price: </strong> &#163;{{
-                  book.original_price
+                <strong>Original Price: </strong> {{
+                  book.original_price > 0 ? '&#163;'+book.original_price : 'Not known'
                 }}
               </div>
               <div class="list-group-item">

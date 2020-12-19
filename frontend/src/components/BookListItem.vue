@@ -30,7 +30,7 @@
         >
       </div>
       <span class="float-end"
-        ><small class="text-muted mr-1"
+        ><small :class="`${ book.original_price > 0 ? 'text-muted mr-1' : 'd-none' }`"
           ><del>&#163;{{ book.original_price }}</del></small
         >
         <strong>&#163;{{ book.selling_price }}</strong>

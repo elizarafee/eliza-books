@@ -171,7 +171,7 @@
                     validationErrors.original_price,
                 }"
               />
-              <div v-if="!$v.originalPrice.numeric" class="invalid-feedback">
+              <div v-if="!$v.originalPrice.decimal" class="invalid-feedback">
                 Original price should be a number.
               </div>
 
@@ -205,7 +205,7 @@
               <div v-if="!$v.sellingPrice.required" class="invalid-feedback">
                 Selling price is required.
               </div>
-              <div v-if="!$v.sellingPrice.numeric" class="invalid-feedback">
+              <div v-if="!$v.sellingPrice.decimal" class="invalid-feedback">
                 Selling price should be a number.
               </div>
 
@@ -296,7 +296,7 @@
                   @change="handlePictureUpload"
                   :class="{'is-invalid': validationErrors.picture}"
                 />
-              <small class="text-muted">Maximum file size can be 2MB</small>
+              <small class="text-muted">Maximum file size can be 2 megabytes</small>
               <small id="file-input-feedback" class="text-danger"></small>
 
               <div
@@ -320,7 +320,7 @@
 </template>
 
 <script>
-import { required, maxLength, numeric } from "vuelidate/lib/validators";
+import { required, maxLength, decimal } from "vuelidate/lib/validators";
 import axios from "axios";
 
 export default {
@@ -341,8 +341,8 @@ export default {
     title: { required, maxLength: maxLength(150) },
     authors: { required, maxLength: maxLength(250) },
     format: { required },
-    originalPrice: { numeric },
-    sellingPrice: { required, numeric },
+    originalPrice: { decimal },
+    sellingPrice: { required, decimal },
     condition: { required },
   },
 
