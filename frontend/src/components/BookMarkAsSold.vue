@@ -88,18 +88,21 @@ export default {
       axios
         .post("/api/books/" + this.book.id + "/sold")
         .then((response) => {
-          console.warn(response);
+          if (response.data.status == "success") {
+            this.$toast.success(response.data.message, {
+              duration: 10000,
+            });
+            this.book.sold = 1;
+          }
 
-          this.$toast.success(response.data.message, {
-            duration: 10000,
-          });
-
-          this.book.sold = 1;
+          if (response.data.status == "error") {
+            this.$toast.error(response.data.message, {
+              duration: 10000,
+            });
+          }
         })
         .catch((error) => {
-          this.$toast.error(error.data.message, {
-            duration: 10000,
-          });
+          console.log(error);
         });
     },
   },

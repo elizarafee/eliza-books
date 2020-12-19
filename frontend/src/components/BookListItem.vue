@@ -13,7 +13,8 @@
       <h5 class="card-title">
         {{ book.title }}
       </h5>
-      <p class="card-text text-muted">{{ book.authors }} <br/>
+      <p class="card-text text-muted">
+        {{ book.authors }} <br />
         <span :class="`${book.sold ? 'badge bg-warning text-dark' : 'd-none'}`"
           >Sold</span
         >
@@ -30,7 +31,8 @@
         >
       </div>
       <span class="float-end"
-        ><small :class="`${ book.original_price > 0 ? 'text-muted mr-1' : 'd-none' }`"
+        ><small
+          :class="`${book.original_price > 0 ? 'text-muted mr-1' : 'd-none'}`"
           ><del>&#163;{{ book.original_price }}</del></small
         >
         <strong>&#163;{{ book.selling_price }}</strong>

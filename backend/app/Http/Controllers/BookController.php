@@ -18,7 +18,7 @@ class BookController extends Controller
         try {
             $books = Book::get(['id', 'title', 'authors', 'format', 'original_price', 'selling_price', 'condition', 'sold', 'picture']);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Failed to get the books.']);
         }
 
         return response()->json(['status' => 'success', 'data' => $books]);
@@ -44,7 +44,7 @@ class BookController extends Controller
         ]);
 
         try {
-            
+
             $book_data = [
                 'title' => $request->get('title'),
                 'authors' => $request->get('authors'),
@@ -52,7 +52,7 @@ class BookController extends Controller
                 'original_price' => $request->get('original_price') ? $request->get('original_price') : 0,
                 'selling_price' => $request->get('selling_price'),
                 'condition' => $request->get('condition'),
-               
+
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
@@ -66,7 +66,7 @@ class BookController extends Controller
 
             $book = Book::create($book_data);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Failed to store book.']);
         }
 
         return response()->json(['status' => 'success', 'data' => $book, 'message' => 'Book stored successfully.']);
@@ -83,7 +83,7 @@ class BookController extends Controller
         try {
             $books = Book::find($id);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Failed to get the book details.']);
         }
 
         return response()->json(['status' => 'success', 'data' => Book::find($id)]);
@@ -136,7 +136,7 @@ class BookController extends Controller
 
             $updated = Book::where('id', $id)->update($update_book_data);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Failed to update the book details.']);
         }
 
         return response()->json(['status' => 'success', 'data' => Book::find($id), 'message' => 'Book details updated successfully.']);
@@ -154,7 +154,7 @@ class BookController extends Controller
         try {
             Book::where('id', $id)->update(['sold' => 1, 'updated_at' => date('Y-m-d H:i:s')]);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Failed to mark the book as sold.']);
         }
 
         return response()->json(['status' => 'success', 'data' => Book::find($id), 'message' => 'Book marked as sold successfully.']);
@@ -171,16 +171,14 @@ class BookController extends Controller
     public function destroy($id)
     {
         try {
-
             $book = Book::find($id);
             $picture = $book->picture;
             if ($picture) {
                 File::delete('images/' . $picture);
             }
-
             $book->delete();
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+            return response()->json(['status' => 'error', 'message' => 'Failed to remove the book.']);
         }
 
         return response()->json(['status' => 'success', 'message' => 'Book removed successfully.', 'data' => null]);

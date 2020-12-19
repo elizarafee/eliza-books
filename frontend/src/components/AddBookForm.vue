@@ -69,7 +69,10 @@
                 placeholder="Author(s) of the book"
                 aria-label="authors"
                 v-model.trim="$v.authors.$model"
-                :class="{ 'is-invalid': validationStatus($v.authors) || validationErrors.authors }"
+                :class="{
+                  'is-invalid':
+                    validationStatus($v.authors) || validationErrors.authors,
+                }"
               />
               <div v-if="!$v.authors.required" class="invalid-feedback">
                 Author(s) field is required.
@@ -102,7 +105,10 @@
                   value="Paperback"
                   checked
                   v-model.trim="$v.format.$model"
-                  :class="{ 'is-invalid': validationStatus($v.format) || validationErrors.format }"
+                  :class="{
+                    'is-invalid':
+                      validationStatus($v.format) || validationErrors.format,
+                  }"
                 />
                 <label class="form-check-label" for="format1">
                   Paperback
@@ -118,7 +124,10 @@
                   value="Hardcover"
                   checked
                   v-model.trim="$v.format.$model"
-                  :class="{ 'is-invalid': validationStatus($v.format) || validationErrors.format }"
+                  :class="{
+                    'is-invalid':
+                      validationStatus($v.format) || validationErrors.format,
+                  }"
                 />
                 <label class="form-check-label" for="format2">
                   Hardcover
@@ -134,7 +143,10 @@
                   value="Soft Copy"
                   checked
                   v-model.trim="$v.format.$model"
-                  :class="{ 'is-invalid': validationStatus($v.format) || validationErrors.format }"
+                  :class="{
+                    'is-invalid':
+                      validationStatus($v.format) || validationErrors.format,
+                  }"
                 />
                 <label class="form-check-label" for="format3">
                   Soft Copy
@@ -145,11 +157,11 @@
                 </div>
 
                 <div
-                v-if="validationErrors && validationErrors.format"
-                class="invalid-feedback"
-              >
-                {{ validationErrors.format[0] }}
-              </div>
+                  v-if="validationErrors && validationErrors.format"
+                  class="invalid-feedback"
+                >
+                  {{ validationErrors.format[0] }}
+                </div>
               </div>
             </div>
           </fieldset>
@@ -232,7 +244,11 @@
                   value="Almost New"
                   checked
                   v-model.trim="$v.condition.$model"
-                  :class="{ 'is-invalid': validationStatus($v.condition) || validationErrors.condition }"
+                  :class="{
+                    'is-invalid':
+                      validationStatus($v.condition) ||
+                      validationErrors.condition,
+                  }"
                 />
                 <label class="form-check-label" for="condition1">
                   Almost New
@@ -248,7 +264,11 @@
                   value="Good"
                   checked
                   v-model.trim="$v.condition.$model"
-                  :class="{ 'is-invalid': validationStatus($v.condition) || validationErrors.condition }"
+                  :class="{
+                    'is-invalid':
+                      validationStatus($v.condition) ||
+                      validationErrors.condition,
+                  }"
                 />
                 <label class="form-check-label" for="condition2">
                   Good
@@ -264,7 +284,11 @@
                   value="Usable"
                   checked
                   v-model.trim="$v.condition.$model"
-                  :class="{ 'is-invalid': validationStatus($v.condition) || validationErrors.condition }"
+                  :class="{
+                    'is-invalid':
+                      validationStatus($v.condition) ||
+                      validationErrors.condition,
+                  }"
                 />
                 <label class="form-check-label" for="condition3">
                   Usable
@@ -275,11 +299,11 @@
                 </div>
 
                 <div
-                v-if="validationErrors && validationErrors.condition"
-                class="invalid-feedback"
-              >
-                {{ validationErrors.condition[0] }}
-              </div>
+                  v-if="validationErrors && validationErrors.condition"
+                  class="invalid-feedback"
+                >
+                  {{ validationErrors.condition[0] }}
+                </div>
               </div>
             </div>
           </fieldset>
@@ -287,16 +311,18 @@
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label text-end">Picture</label>
             <div class="col-sm-9 text-start">
-                <input
-                  class="form-control"
-                  type="file"
-                  id="file"
-                  ref="file"
-                  accept="image/*"
-                  @change="handlePictureUpload"
-                  :class="{'is-invalid': validationErrors.picture}"
-                />
-              <small class="text-muted">Maximum file size can be 2 megabytes</small>
+              <input
+                class="form-control"
+                type="file"
+                id="file"
+                ref="file"
+                accept="image/*"
+                @change="handlePictureUpload"
+                :class="{ 'is-invalid': validationErrors.picture }"
+              />
+              <small class="text-muted"
+                >Maximum file size can be 2 megabytes</small
+              >
               <small id="file-input-feedback" class="text-danger"></small>
 
               <div
@@ -310,7 +336,13 @@
 
           <div class="row mb-3">
             <div class="col-sm-9 offset-sm-3 text-start">
-              <button type="submit" class="btn btn-outline-success px-5" id="submit-button">Save</button>
+              <button
+                type="submit"
+                class="btn btn-outline-success px-5"
+                id="submit-button"
+              >
+                Save
+              </button>
             </div>
           </div>
         </form>
@@ -367,8 +399,8 @@ export default {
       this.$v.$touch();
       if (this.$v.$pendding || this.$v.$error) return;
 
-document.getElementById("submit-button").classList.add('disabled');
-      document.getElementById("submit-button").textContent = 'Saving ...';
+      document.getElementById("submit-button").classList.add("disabled");
+      document.getElementById("submit-button").textContent = "Saving ...";
 
       const formData = new FormData();
 
@@ -383,14 +415,13 @@ document.getElementById("submit-button").classList.add('disabled');
       axios
         .post("/api/books", formData)
         .then((response) => {
-
           if (response.data.status == "success") {
             this.$toast.success(response.data.message, {
               duration: 10000,
             });
 
             // redirecting to the book details page
-          this.$router.push("/books/" + response.data.data.id);
+            this.$router.push("/books/" + response.data.data.id);
           }
 
           if (response.data.status == "error") {
@@ -398,8 +429,10 @@ document.getElementById("submit-button").classList.add('disabled');
               duration: 10000,
             });
 
-            document.getElementById("submit-button").classList.remove('disabled');
-      document.getElementById("submit-button").textContent = 'Save';
+            document
+              .getElementById("submit-button")
+              .classList.remove("disabled");
+            document.getElementById("submit-button").textContent = "Save";
           }
         })
         .catch((error) => {
@@ -407,8 +440,10 @@ document.getElementById("submit-button").classList.add('disabled');
             // catching validation errors from server side
             this.validationErrors = error.response.data;
 
-            document.getElementById("submit-button").classList.remove('disabled');
-      document.getElementById("submit-button").textContent = 'Save';
+            document
+              .getElementById("submit-button")
+              .classList.remove("disabled");
+            document.getElementById("submit-button").textContent = "Save";
           }
         });
     },
