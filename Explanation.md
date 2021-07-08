@@ -1,4 +1,4 @@
-# UpStart
+# Eliza-books
 
 I have enjoyed building the site. I did not work with Vue.js before, had to learn and find my way around it.  
  
@@ -44,12 +44,3 @@ I have enjoyed building the site. I did not work with Vue.js before, had to lear
 * run `docker-compose up -d` to start all services
 * run `docker-compose exec backend bash init.sh` to install backend dependencies, you only need to run this once first time.
 * visit [http://localhost:8888](http://localhost:8888) to see the UI
-
-
-### Thank you  
-
-- Thank you for your time 
-- I really look forward to working in Quidco 
-
-
-

@@ -28,3 +28,10 @@ Vuejs 2.6
 Mysql 5.7
 
 * Used [MySQL](https://www.mysql.com) for managing database
+
+# Project setup
+
+- install docker on computer
+- run `docker-compose up -d` to start all services
+- run `docker-compose exec backend bash init.sh` to install backend dependencies, only need to run this once first time.
+- visit [http://localhost:8888](http://localhost:8888) to see the UI
